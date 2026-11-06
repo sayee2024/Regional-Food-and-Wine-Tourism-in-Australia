@@ -1,0 +1,780 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "National recognised wine GI geography 2026. Layered full Australian state outlines (derived from 2021 TRA geography), all 64 Wine Australia GI polygons and centroid markers for visibility, plus eight exact-name food-bowl matches. Companion stacked count bars by state. No tourism visitor counts are implied by the GI markers. Checkpoint 20: Australian central meridian, two-pass readable state labels and numbered wine-region callouts.",
+  "hconcat": [
+    {
+      "title": {
+        "text": "Recognised wine regions across Australia",
+        "subtitle": "Wine GI boundaries and locations; numbered food-bowl matches",
+        "fontSize": 15,
+        "subtitleFontSize": 11,
+        "anchor": "middle"
+      },
+      "width": 510,
+      "height": 440,
+      "projection": {
+        "type": "conicEqualArea",
+        "parallels": [
+          -18,
+          -36
+        ],
+        "rotate": [
+          -132,
+          0
+        ],
+        "center": [
+          0,
+          -27
+        ]
+      },
+      "layer": [
+        {
+          "data": {
+            "url": "data/chart04_australian_state_outlines_2021.geojson",
+            "format": {
+              "type": "json",
+              "property": "features"
+            }
+          },
+          "mark": {
+            "type": "geoshape",
+            "fill": "#EFF2ED",
+            "stroke": "#BCC8C0",
+            "strokeWidth": 1.1
+          },
+          "encoding": {
+            "tooltip": [
+              {
+                "field": "properties.state",
+                "type": "nominal",
+                "title": "State / territory"
+              }
+            ]
+          }
+        },
+        {
+          "data": {
+            "url": "data/chart04_wine_gi_footprints_2026.geojson",
+            "format": {
+              "type": "json",
+              "property": "features"
+            }
+          },
+          "mark": {
+            "type": "geoshape",
+            "stroke": "#DCE6DA",
+            "strokeWidth": 0.6
+          },
+          "encoding": {
+            "color": {
+              "field": "properties.ATDW_EXACT_NAME_MATCH",
+              "type": "nominal",
+              "scale": {
+                "domain": [
+                  0,
+                  1
+                ],
+                "range": [
+                  "#B0C9B6",
+                  "#24736A"
+                ]
+              },
+              "legend": null
+            },
+            "tooltip": [
+              {
+                "field": "properties.GI_NAME",
+                "type": "nominal",
+                "title": "GI wine region"
+              },
+              {
+                "field": "properties.STATE",
+                "type": "nominal",
+                "title": "State"
+              },
+              {
+                "field": "properties.GI_AREA_KM2",
+                "type": "quantitative",
+                "title": "GI area (km²)",
+                "format": ",.0f"
+              }
+            ]
+          }
+        },
+        {
+          "data": {
+            "url": "data/chart04_wine_gi_location_markers_2026.csv",
+            "format": {
+              "type": "csv",
+              "parse": {
+                "lon": "number",
+                "lat": "number",
+                "match": "number"
+              }
+            }
+          },
+          "transform": [
+            {
+              "filter": "datum.match == 0"
+            }
+          ],
+          "mark": {
+            "type": "circle",
+            "color": "#78A992",
+            "size": 36,
+            "opacity": 0.8,
+            "stroke": "white",
+            "strokeWidth": 0.4
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "tooltip": [
+              {
+                "field": "gi_region",
+                "type": "nominal",
+                "title": "GI wine region"
+              },
+              {
+                "field": "state",
+                "type": "nominal",
+                "title": "State"
+              },
+              {
+                "field": "classification",
+                "type": "nominal",
+                "title": "Food-bowl link"
+              }
+            ]
+          }
+        },
+        {
+          "data": {
+            "url": "data/chart04_wine_gi_location_markers_2026.csv",
+            "format": {
+              "type": "csv",
+              "parse": {
+                "lon": "number",
+                "lat": "number",
+                "match": "number"
+              }
+            }
+          },
+          "transform": [
+            {
+              "filter": "datum.match == 1"
+            }
+          ],
+          "mark": {
+            "type": "circle",
+            "color": "#24736A",
+            "size": 160,
+            "stroke": "#FFFFFF",
+            "strokeWidth": 1.5
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "tooltip": [
+              {
+                "field": "gi_region",
+                "type": "nominal",
+                "title": "Named GI wine region"
+              },
+              {
+                "field": "state",
+                "type": "nominal",
+                "title": "State"
+              },
+              {
+                "field": "classification",
+                "type": "nominal",
+                "title": "Food-bowl link"
+              }
+            ]
+          }
+        },
+        {
+          "data": {
+            "url": "data/chart05_state_labels_2021.csv",
+            "format": {
+              "type": "csv",
+              "parse": {
+                "lon": "number",
+                "lat": "number"
+              }
+            }
+          },
+          "mark": {
+            "type": "text",
+            "font": "Arial",
+            "fontSize": 12,
+            "fontWeight": "bold",
+            "fill": "#6B7B71",
+            "opacity": 1,
+            "stroke": "#FFFDF9",
+            "strokeWidth": 3,
+            "strokeJoin": "round"
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "label",
+              "type": "nominal"
+            },
+            "tooltip": [
+              {
+                "field": "state",
+                "type": "nominal",
+                "title": "State / territory"
+              }
+            ]
+          }
+        },
+        {
+          "data": {
+            "url": "data/chart05_state_labels_2021.csv",
+            "format": {
+              "type": "csv",
+              "parse": {
+                "lon": "number",
+                "lat": "number"
+              }
+            }
+          },
+          "mark": {
+            "type": "text",
+            "font": "Arial",
+            "fontSize": 12,
+            "fontWeight": "bold",
+            "fill": "#42574D",
+            "opacity": 1
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "label",
+              "type": "nominal"
+            },
+            "tooltip": [
+              {
+                "field": "state",
+                "type": "nominal",
+                "title": "State / territory"
+              }
+            ]
+          }
+        },
+        {
+          "data": {
+            "values": [
+              {
+                "state": "VIC",
+                "region": "Mornington Peninsula",
+                "lon": 145.0774853,
+                "lat": -38.33605,
+                "number": "07",
+                "label_lon": 147,
+                "label_lat": -40
+              },
+              {
+                "state": "SA",
+                "region": "Barossa Valley",
+                "lon": 138.9378818,
+                "lat": -34.5315,
+                "number": "02",
+                "label_lon": 142,
+                "label_lat": -32.8
+              },
+              {
+                "state": "SA",
+                "region": "Clare Valley",
+                "lon": 138.6515029,
+                "lat": -33.91305,
+                "number": "03",
+                "label_lon": 138,
+                "label_lat": -31.5
+              },
+              {
+                "state": "SA",
+                "region": "Kangaroo Island",
+                "lon": 137.156452,
+                "lat": -35.8182,
+                "number": "04",
+                "label_lon": 133.5,
+                "label_lat": -37
+              },
+              {
+                "state": "SA",
+                "region": "Adelaide Hills",
+                "lon": 138.8043403,
+                "lat": -35.01775,
+                "number": "01",
+                "label_lon": 141,
+                "label_lat": -35
+              },
+              {
+                "state": "NSW",
+                "region": "Southern Highlands",
+                "lon": 150.3687923,
+                "lat": -34.4842,
+                "number": "08",
+                "label_lon": 154,
+                "label_lat": -34
+              },
+              {
+                "state": "WA",
+                "region": "Great Southern",
+                "lon": 117.7116472,
+                "lat": -34.63035,
+                "number": "05",
+                "label_lon": 120,
+                "label_lat": -36.7
+              },
+              {
+                "state": "WA",
+                "region": "Margaret River",
+                "lon": 115.1436731,
+                "lat": -33.95745,
+                "number": "06",
+                "label_lon": 111,
+                "label_lat": -34.5
+              }
+            ]
+          },
+          "mark": {
+            "type": "rule",
+            "color": "#65746C",
+            "strokeWidth": 0.8
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "longitude2": {
+              "field": "label_lon"
+            },
+            "latitude2": {
+              "field": "label_lat"
+            }
+          }
+        },
+        {
+          "data": {
+            "values": [
+              {
+                "state": "VIC",
+                "region": "Mornington Peninsula",
+                "lon": 145.0774853,
+                "lat": -38.33605,
+                "number": "07",
+                "label_lon": 147,
+                "label_lat": -40
+              },
+              {
+                "state": "SA",
+                "region": "Barossa Valley",
+                "lon": 138.9378818,
+                "lat": -34.5315,
+                "number": "02",
+                "label_lon": 142,
+                "label_lat": -32.8
+              },
+              {
+                "state": "SA",
+                "region": "Clare Valley",
+                "lon": 138.6515029,
+                "lat": -33.91305,
+                "number": "03",
+                "label_lon": 138,
+                "label_lat": -31.5
+              },
+              {
+                "state": "SA",
+                "region": "Kangaroo Island",
+                "lon": 137.156452,
+                "lat": -35.8182,
+                "number": "04",
+                "label_lon": 133.5,
+                "label_lat": -37
+              },
+              {
+                "state": "SA",
+                "region": "Adelaide Hills",
+                "lon": 138.8043403,
+                "lat": -35.01775,
+                "number": "01",
+                "label_lon": 141,
+                "label_lat": -35
+              },
+              {
+                "state": "NSW",
+                "region": "Southern Highlands",
+                "lon": 150.3687923,
+                "lat": -34.4842,
+                "number": "08",
+                "label_lon": 154,
+                "label_lat": -34
+              },
+              {
+                "state": "WA",
+                "region": "Great Southern",
+                "lon": 117.7116472,
+                "lat": -34.63035,
+                "number": "05",
+                "label_lon": 120,
+                "label_lat": -36.7
+              },
+              {
+                "state": "WA",
+                "region": "Margaret River",
+                "lon": 115.1436731,
+                "lat": -33.95745,
+                "number": "06",
+                "label_lon": 111,
+                "label_lat": -34.5
+              }
+            ]
+          },
+          "mark": {
+            "type": "circle",
+            "size": 300,
+            "fill": "#FFFDF9",
+            "stroke": "#28584B",
+            "strokeWidth": 0.8,
+            "opacity": 1
+          },
+          "encoding": {
+            "longitude": {
+              "field": "label_lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "label_lat",
+              "type": "quantitative"
+            },
+            "tooltip": [
+              {
+                "field": "region",
+                "type": "nominal",
+                "title": "Region"
+              }
+            ]
+          }
+        },
+        {
+          "data": {
+            "values": [
+              {
+                "state": "VIC",
+                "region": "Mornington Peninsula",
+                "lon": 145.0774853,
+                "lat": -38.33605,
+                "number": "07",
+                "label_lon": 147,
+                "label_lat": -40
+              },
+              {
+                "state": "SA",
+                "region": "Barossa Valley",
+                "lon": 138.9378818,
+                "lat": -34.5315,
+                "number": "02",
+                "label_lon": 142,
+                "label_lat": -32.8
+              },
+              {
+                "state": "SA",
+                "region": "Clare Valley",
+                "lon": 138.6515029,
+                "lat": -33.91305,
+                "number": "03",
+                "label_lon": 138,
+                "label_lat": -31.5
+              },
+              {
+                "state": "SA",
+                "region": "Kangaroo Island",
+                "lon": 137.156452,
+                "lat": -35.8182,
+                "number": "04",
+                "label_lon": 133.5,
+                "label_lat": -37
+              },
+              {
+                "state": "SA",
+                "region": "Adelaide Hills",
+                "lon": 138.8043403,
+                "lat": -35.01775,
+                "number": "01",
+                "label_lon": 141,
+                "label_lat": -35
+              },
+              {
+                "state": "NSW",
+                "region": "Southern Highlands",
+                "lon": 150.3687923,
+                "lat": -34.4842,
+                "number": "08",
+                "label_lon": 154,
+                "label_lat": -34
+              },
+              {
+                "state": "WA",
+                "region": "Great Southern",
+                "lon": 117.7116472,
+                "lat": -34.63035,
+                "number": "05",
+                "label_lon": 120,
+                "label_lat": -36.7
+              },
+              {
+                "state": "WA",
+                "region": "Margaret River",
+                "lon": 115.1436731,
+                "lat": -33.95745,
+                "number": "06",
+                "label_lon": 111,
+                "label_lat": -34.5
+              }
+            ]
+          },
+          "mark": {
+            "type": "text",
+            "font": "Arial",
+            "fontWeight": "bold",
+            "fontSize": 11,
+            "fill": "#173B33"
+          },
+          "encoding": {
+            "longitude": {
+              "field": "label_lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "label_lat",
+              "type": "quantitative"
+            },
+            "tooltip": [
+              {
+                "field": "region",
+                "type": "nominal",
+                "title": "Region"
+              }
+            ],
+            "text": {
+              "field": "number",
+              "type": "nominal"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "text": "GI regions by state",
+        "subtitle": "Dark green = food-bowl name match",
+        "anchor": "middle",
+        "fontSize": 15,
+        "subtitleFontSize": 11
+      },
+      "width": 210,
+      "height": 300,
+      "layer": [
+        {
+          "data": {
+            "url": "data/chart04_wine_gi_counts_by_state_2026.csv"
+          },
+          "mark": {
+            "type": "bar",
+            "size": 24
+          },
+          "encoding": {
+            "y": {
+              "field": "state_code",
+              "type": "nominal",
+              "sort": [
+                "VIC",
+                "SA",
+                "NSW",
+                "WA",
+                "QLD",
+                "TAS"
+              ],
+              "title": null,
+              "axis": {
+                "labelFontSize": 12,
+                "labelFontWeight": "bold",
+                "labelPadding": 8
+              }
+            },
+            "x": {
+              "field": "region_count",
+              "type": "quantitative",
+              "stack": "zero",
+              "title": "Recognised GI regions",
+              "scale": {
+                "domain": [
+                  0,
+                  23
+                ]
+              },
+              "axis": {
+                "grid": true,
+                "tickMinStep": 5
+              }
+            },
+            "color": {
+              "field": "category",
+              "type": "nominal",
+              "title": null,
+              "scale": {
+                "domain": [
+                  "Other GI region",
+                  "Food-bowl name match"
+                ],
+                "range": [
+                  "#B0C9B6",
+                  "#24736A"
+                ]
+              },
+              "legend": {
+                "orient": "bottom",
+                "direction": "vertical"
+              }
+            },
+            "tooltip": [
+              {
+                "field": "state",
+                "type": "nominal",
+                "title": "State"
+              },
+              {
+                "field": "category",
+                "type": "nominal",
+                "title": "Type"
+              },
+              {
+                "field": "region_count",
+                "type": "quantitative",
+                "title": "GI count"
+              }
+            ]
+          }
+        },
+        {
+          "data": {
+            "url": "data/chart04_wine_gi_state_totals_2026.csv"
+          },
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "dx": 5,
+            "baseline": "middle",
+            "fontSize": 11,
+            "fontWeight": "bold",
+            "color": "#28584B"
+          },
+          "encoding": {
+            "y": {
+              "field": "state_code",
+              "type": "nominal",
+              "sort": [
+                "VIC",
+                "SA",
+                "NSW",
+                "WA",
+                "QLD",
+                "TAS"
+              ],
+              "title": null,
+              "axis": {
+                "labelFontSize": 12,
+                "labelFontWeight": "bold",
+                "labelPadding": 8
+              }
+            },
+            "x": {
+              "field": "GI_regions_total",
+              "type": "quantitative",
+              "scale": {
+                "domain": [
+                  0,
+                  23
+                ]
+              }
+            },
+            "text": {
+              "field": "GI_regions_total",
+              "type": "quantitative"
+            },
+            "tooltip": [
+              {
+                "field": "state",
+                "type": "nominal",
+                "title": "State"
+              },
+              {
+                "field": "GI_regions_total",
+                "type": "quantitative",
+                "title": "Total GI regions"
+              },
+              {
+                "field": "name_matches",
+                "type": "quantitative",
+                "title": "Food-bowl name matches"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "spacing": 20,
+  "resolve": {
+    "scale": {
+      "color": "independent"
+    }
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "background": "white",
+    "legend": {
+      "titleLimit": 450,
+      "labelLimit": 250
+    }
+  }
+}

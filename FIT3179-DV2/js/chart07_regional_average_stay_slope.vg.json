@@ -1,0 +1,193 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "2019 versus 2024 reported mean length of stay in nights per domestic overnight trip for six selected food-bowl-associated Australian tourism reporting regions. TRA NVS total-purpose visitors, not only tourists who participated in food/wine activities. Australia's South West is a broad geographic proxy. Compatibility repair: remove duplicate legend-bound selection signal; retain legend and tooltips.",
+  "data": {
+    "url": "data/chart07_regional_average_stay_2019_2024.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "year": "number",
+        "default_visible": "number",
+        "average_stay_nights": "number",
+        "average_stay_2019_nights": "number",
+        "average_stay_2024_nights": "number",
+        "change_in_reported_average_stay_nights": "number",
+        "domestic_overnight_trips": "number",
+        "domestic_visitor_nights": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "filter": "datum.default_visible == 1"
+    }
+  ],
+  "width": "container",
+  "height": 365,
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "ordinal",
+      "sort": [
+        2019,
+        2024
+      ],
+      "axis": {
+        "title": null,
+        "labelAngle": 0,
+        "labelFontSize": 13,
+        "labelPadding": 10,
+        "tickSize": 0,
+        "domain": false
+      },
+      "scale": {
+        "padding": 0.75
+      }
+    },
+    "y": {
+      "field": "average_stay_nights",
+      "type": "quantitative",
+      "scale": {
+        "domain": [
+          1.8,
+          3.8
+        ],
+        "zero": false
+      },
+      "axis": {
+        "title": "Average overnight stay (nights per trip)",
+        "format": ".1f",
+        "tickCount": 6
+      }
+    },
+    "color": {
+      "field": "tourism_region",
+      "type": "nominal",
+      "scale": {
+        "domain": [
+          "Australia's South West",
+          "Barossa",
+          "Bundaberg",
+          "Clare Valley",
+          "Hunter",
+          "Peninsula"
+        ],
+        "range": [
+          "#24736A",
+          "#B47D42",
+          "#6D5787",
+          "#B45151",
+          "#367FA5",
+          "#80623A"
+        ]
+      },
+      "legend": {
+        "title": "Selected tourism regions",
+        "orient": "bottom",
+        "direction": "horizontal",
+        "columns": 3,
+        "labelLimit": 180,
+        "symbolType": "stroke",
+        "symbolStrokeWidth": 3
+      }
+    },
+    "detail": {
+      "field": "tourism_region",
+      "type": "nominal"
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2.8
+      },
+      "encoding": {}
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 115,
+        "stroke": "#fffdf9",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "tooltip": [
+          {
+            "field": "tourism_region",
+            "type": "nominal",
+            "title": "TRA tourism region"
+          },
+          {
+            "field": "matched_atdw_food_bowl_names",
+            "type": "nominal",
+            "title": "Associated food-bowl name(s)"
+          },
+          {
+            "field": "year",
+            "type": "ordinal",
+            "title": "Year ending December"
+          },
+          {
+            "field": "average_stay_nights",
+            "type": "quantitative",
+            "title": "Published average stay (nights)",
+            "format": ".1f"
+          },
+          {
+            "field": "change_in_reported_average_stay_nights",
+            "type": "quantitative",
+            "title": "2019–2024 change (nights)",
+            "format": "+.1f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year == 2024"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 9,
+        "baseline": "middle",
+        "fontSize": 12,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "text": {
+          "field": "average_stay_nights",
+          "type": "quantitative",
+          "format": ".1f"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFont": "Arial",
+      "titleFont": "Arial",
+      "labelColor": "#22382F",
+      "titleColor": "#22382F",
+      "gridColor": "#E7EAE4"
+    },
+    "legend": {
+      "labelFont": "Arial",
+      "titleFont": "Arial",
+      "labelColor": "#22382F",
+      "titleLimit": 450,
+      "labelLimit": 250
+    }
+  },
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  }
+}

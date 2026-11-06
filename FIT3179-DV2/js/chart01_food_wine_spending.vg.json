@@ -1,0 +1,134 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Average expenditure per night on domestic overnight trips involving winery, farm gate or food market visits, 2024, compared against the national leisure/business overnight benchmark. Spending is for entire trips, not at the attraction.",
+  "data": {
+    "url": "data/chart01_food_wine_spending_2024.csv"
+  },
+  "width": "container",
+  "height": 195,
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "color": "#B47D42",
+        "cornerRadiusEnd": 4,
+        "size": 32
+      },
+      "encoding": {
+        "y": {
+          "field": "experience",
+          "type": "nominal",
+          "sort": [
+            "Farm gates",
+            "Wineries",
+            "Food markets"
+          ],
+          "axis": {
+            "title": null,
+            "labelFontSize": 13,
+            "labelLimit": 155
+          }
+        },
+        "x": {
+          "field": "domestic_overnight_spend_per_night_AUD",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              420
+            ]
+          },
+          "axis": {
+            "title": "Average spend per night (A$)",
+            "format": "$,.0f"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "experience",
+            "title": "Trip activity"
+          },
+          {
+            "field": "domestic_overnight_spend_per_night_AUD",
+            "title": "Average spend per night",
+            "format": "$,.0f"
+          },
+          {
+            "field": "national_benchmark_AUD",
+            "title": "National benchmark",
+            "format": "$,.0f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 2,
+        "strokeDash": [
+          5,
+          4
+        ],
+        "color": "#24736A"
+      },
+      "encoding": {
+        "x": {
+          "aggregate": "min",
+          "field": "national_benchmark_AUD",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 6,
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "#3D3129"
+      },
+      "encoding": {
+        "x": {
+          "field": "domestic_overnight_spend_per_night_AUD",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "experience",
+          "type": "nominal",
+          "sort": [
+            "Farm gates",
+            "Wineries",
+            "Food markets"
+          ]
+        },
+        "text": {
+          "field": "domestic_overnight_spend_per_night_AUD",
+          "type": "quantitative",
+          "format": "$,.0f"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFont": "Arial",
+      "titleFont": "Arial",
+      "labelColor": "#22382F",
+      "titleColor": "#22382F",
+      "gridColor": "#E9E5DE"
+    },
+    "legend": {
+      "titleLimit": 450,
+      "labelLimit": 250
+    }
+  },
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  }
+}

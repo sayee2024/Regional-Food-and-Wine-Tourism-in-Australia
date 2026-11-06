@@ -1,0 +1,149 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "2024 SATC domestic visitor expenditure non-contiguous area cartogram: six food-bowl-named South Australian tourism reporting regions highlighted, Flinders Ranges and Outback identified only as a broad geographic proxy for the named Flinders Ranges food bowl; all other South Australian tourism regions retained as context. Area is proportional to overall domestic tourism spending (A$ million), not food-and-wine sales. EPSG:3577 geometry and numeric fields unchanged. Display correction: compact polygon centroid separations approximately 45% by translation only; numbered key below map and equal-area scaling preserved. Checkpoint 20: preserve verified compact shapes, planar identity projection and labels; expand legend title limit.",
+  "width": "container",
+  "height": 515,
+  "projection": {
+    "type": "identity",
+    "reflectY": true
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/chart03_sa_domestic_spend_cartogram_compact_2024.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "transform": [
+        {
+          "calculate": "datum.properties.ATDW_matched_food_bowl ? 'Named food bowl' : datum.properties.tourism_region === 'Flinders Ranges and Outback' ? 'Flinders proxy' : 'Other SA region'",
+          "as": "region_group"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "#FFFFFF",
+        "strokeWidth": 1.6
+      },
+      "encoding": {
+        "color": {
+          "field": "region_group",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Named food bowl",
+              "Flinders proxy",
+              "Other SA region"
+            ],
+            "range": [
+              "#24736A",
+              "#E3B867",
+              "#CDD3CC"
+            ]
+          },
+          "legend": {
+            "title": "Food-bowl geographic link",
+            "orient": "bottom",
+            "direction": "horizontal",
+            "labelFontSize": 11
+          }
+        },
+        "tooltip": [
+          {
+            "field": "properties.tourism_region",
+            "type": "nominal",
+            "title": "Tourism region"
+          },
+          {
+            "field": "properties.domestic_total_spend_million_AUD",
+            "type": "quantitative",
+            "title": "Domestic expenditure (A$ million)",
+            "format": ",.0f"
+          },
+          {
+            "field": "region_group",
+            "type": "nominal",
+            "title": "Geographic association"
+          },
+          {
+            "field": "properties.year",
+            "type": "ordinal",
+            "title": "Year ending December"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "data/chart03_sa_cartogram_labels_compact_2024.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "cartogram_label_number": "string",
+            "planar_easting_m": "number",
+            "planar_northing_m": "number",
+            "ATDW_matched_food_bowl": "number",
+            "domestic_total_spend_million_AUD": "number"
+          }
+        }
+      },
+      "mark": {
+        "type": "text",
+        "font": "Arial",
+        "fontSize": 14,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "planar_easting_m",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "planar_northing_m",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "cartogram_label_number",
+          "type": "nominal"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.ATDW_matched_food_bowl === 1",
+            "value": "#FFFFFF"
+          },
+          "value": "#173B33"
+        },
+        "tooltip": [
+          {
+            "field": "tourism_region",
+            "type": "nominal",
+            "title": "Tourism region"
+          },
+          {
+            "field": "domestic_total_spend_million_AUD",
+            "type": "quantitative",
+            "title": "Domestic expenditure (A$ million)",
+            "format": ",.0f"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "legend": {
+      "labelFont": "Arial",
+      "titleFont": "Arial",
+      "titleLimit": 450,
+      "labelLimit": 250
+    }
+  },
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  }
+}

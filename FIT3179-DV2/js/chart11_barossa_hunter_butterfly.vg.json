@@ -1,0 +1,246 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Back-to-back butterfly chart comparing the percent of tourism consumption from source-defined food/beverage and other tourism products in Barossa (SA) and Hunter (NSW), FY2024-25. Figures are all-tourism regional product consumption, not wine/farm-gate venue sales.",
+  "data": {
+    "url": "data/chart11_barossa_hunter_consumption_2024_25.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "category_order": "number",
+        "tourism_consumption_million_AUD": "number",
+        "region_total_consumption_million_AUD": "number",
+        "share_of_regional_tourism_consumption_pct": "number",
+        "signed_share_for_butterfly_pct": "number",
+        "barossa_minus_hunter_pp": "number",
+        "source_categories_aggregated": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "calculate": "datum.display_category === \"Takeaway and restaurant meals\" ? \"Meals & takeaway\" : datum.display_category === \"Food products\" ? \"Food products\" : datum.display_category === \"Alcoholic beverages and other beverages\" ? \"Alcoholic & other beverages\" : datum.display_category === \"Fuel (petrol, diesel)\" ? \"Fuel\" : datum.display_category === \"Shopping, gifts and souvenirs\" ? \"Shopping, gifts & souvenirs\" : datum.display_category === \"Accommodation services\" ? \"Accommodation\" : datum.display_category === \"Long distance passenger transportation\" ? \"Long-distance transport\" : datum.display_category === \"Travel agency and information centre services\" ? \"Travel agency & information\" : datum.display_category === \"Actual and imputed rent on dwellings\" ? \"Actual & imputed rent\" : datum.display_category === \"Other 9 tourism product categories\" ? \"Other 9 product categories\" : datum.display_category",
+      "as": "category_axis_label"
+    },
+    {
+      "calculate": "format(datum.share_of_regional_tourism_consumption_pct, '.1f') + '%'",
+      "as": "share_label"
+    }
+  ],
+  "width": "container",
+  "height": 420,
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  },
+  "encoding": {
+    "y": {
+      "field": "category_axis_label",
+      "type": "nominal",
+      "sort": [
+        "Meals & takeaway",
+        "Food products",
+        "Alcoholic & other beverages",
+        "Fuel",
+        "Shopping, gifts & souvenirs",
+        "Accommodation",
+        "Long-distance transport",
+        "Travel agency & information",
+        "Actual & imputed rent",
+        "Other 9 product categories"
+      ],
+      "title": null,
+      "axis": {
+        "labelFontSize": 12,
+        "labelLimit": 265,
+        "labelPadding": 9,
+        "ticks": false,
+        "domain": false,
+        "labelLineHeight": 14
+      }
+    },
+    "x": {
+      "field": "signed_share_for_butterfly_pct",
+      "type": "quantitative",
+      "scale": {
+        "domain": [
+          -32,
+          32
+        ],
+        "nice": false,
+        "zero": true
+      },
+      "axis": {
+        "title": "Share of each region’s tourism consumption (%)",
+        "values": [
+          -20,
+          -10,
+          0,
+          10,
+          20
+        ],
+        "labelExpr": "abs(datum.value) + '%'",
+        "labelFontSize": 11,
+        "titleFontSize": 12,
+        "grid": false,
+        "domain": false,
+        "tickSize": 4
+      }
+    },
+    "tooltip": [
+      {
+        "field": "tourism_region",
+        "type": "nominal",
+        "title": "Region"
+      },
+      {
+        "field": "display_category",
+        "type": "nominal",
+        "title": "Tourism product category"
+      },
+      {
+        "field": "share_of_regional_tourism_consumption_pct",
+        "type": "quantitative",
+        "format": ".2f",
+        "title": "Share of regional consumption (%)"
+      },
+      {
+        "field": "tourism_consumption_million_AUD",
+        "type": "quantitative",
+        "format": ",.2f",
+        "title": "Product consumption (A$ million)"
+      },
+      {
+        "field": "region_total_consumption_million_AUD",
+        "type": "quantitative",
+        "format": ",.2f",
+        "title": "Total regional consumption (A$ million)"
+      },
+      {
+        "field": "barossa_minus_hunter_pp",
+        "type": "quantitative",
+        "format": "+.2f",
+        "title": "Barossa − Hunter (percentage points)"
+      },
+      {
+        "field": "source_categories_aggregated",
+        "type": "quantitative",
+        "title": "Original categories grouped"
+      },
+      {
+        "field": "financial_year",
+        "type": "nominal",
+        "title": "Financial year"
+      }
+    ]
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "stroke": "#7E8B84",
+        "strokeWidth": 1.2
+      },
+      "encoding": {
+        "x": {
+          "datum": 0
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "bar",
+        "cornerRadiusEnd": 2,
+        "size": 26
+      },
+      "encoding": {
+        "color": {
+          "field": "tourism_region",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Barossa",
+              "Hunter"
+            ],
+            "range": [
+              "#24736A",
+              "#B47D42"
+            ]
+          },
+          "legend": {
+            "title": "Regional tourism economy",
+            "orient": "top",
+            "direction": "horizontal",
+            "labelFontSize": 12,
+            "titleFontSize": 12
+          }
+        },
+        "opacity": {
+          "condition": {
+            "test": "datum.category_kind === 'food_beverage'",
+            "value": 1
+          },
+          "value": 0.74
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.tourism_region === 'Barossa'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -5,
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "color": "#24736A"
+      },
+      "encoding": {
+        "text": {
+          "field": "share_label",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.tourism_region === 'Hunter'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 5,
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "color": "#80522D"
+      },
+      "encoding": {
+        "text": {
+          "field": "share_label",
+          "type": "nominal"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFont": "Arial",
+      "titleFont": "Arial",
+      "labelColor": "#233F34",
+      "titleColor": "#233F34"
+    },
+    "legend": {
+      "labelFont": "Arial",
+      "titleFont": "Arial",
+      "titleLimit": 450,
+      "labelLimit": 250
+    }
+  }
+}
