@@ -1,0 +1,13 @@
+state_code,state,category,region_count
+VIC,Victoria,Other GI region,19
+VIC,Victoria,Food-bowl name match,1
+SA,South Australia,Other GI region,14
+SA,South Australia,Food-bowl name match,4
+NSW,New South Wales,Other GI region,13
+NSW,New South Wales,Food-bowl name match,1
+WA,Western Australia,Other GI region,7
+WA,Western Australia,Food-bowl name match,2
+QLD,Queensland,Other GI region,2
+QLD,Queensland,Food-bowl name match,0
+TAS,Tasmania,Other GI region,1
+TAS,Tasmania,Food-bowl name match,0

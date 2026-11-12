@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Regional Food &amp; Wine Tourism in Australia | FIT3179 DV2</title>
+<link href="https://cdn.jsdelivr.net/npm/purecss@3.1.0/build/pure-min.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/purecss@3.1.0/build/grids-responsive-min.css" rel="stylesheet"/>
+<link href="css/style.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/vega@5.30.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@5.20.1"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.29.0"></script>
+<script defer="" src="js/vega_lite_vis.js"></script>
+</head>
+<body>
+<header class="hero">
+<div class="container">
+<div class="eyebrow">FIT3179 Data Visualisation 2</div>
+<h1>Regional Food &amp; Wine Tourism in Australia</h1>
+<p>Follow the national 2024 food-and-wine activity evidence through tourism regions and overnight stays, then
+        examine spending in a South Australian case study and a cross-state regional comparison.</p>
+</div>
+</header>
+<nav>
+<div class="container">
+<a href="#food">Food &amp; wine</a>
+<a href="#wine">Wine regions</a>
+<a href="#visitors">Regional visitors</a>
+<a href="#stays">Overnight stays</a>
+<a href="#spending">Expenditure</a>
+<a href="#sources">Takeaways</a>
+<a href="#metadata">Data &amp; credits</a>
+</div>
+</nav>
+<main class="container">
+<section id="food">
+<span class="eyebrow">Section 01</span>
+<h2>Food and wine in Australian tourism</h2>
+<p class="intro">Food and wine are part of Australia’s wider tourism economy. In 2024, overnight trips involving these activities recorded above-benchmark nightly spending.</p>
+<div class="cards pure-g">
+<div class="chart-column pure-u-1">
+<article class="chart-card">
+<h3>Which domestic food-and-wine trips spent most per night in 2024?</h3>
+<div aria-label="Visualisation and its legend" class="visual-frame"><div class="chart-holder" id="chart01">Loading visualisation…</div></div>        <div class="chart-summary" aria-label="Chart findings">
+          <div class="story-observation">
+            <p>Farm-gate trips averaged <strong>AUD 367 per night</strong>; winery trips averaged <strong>AUD 328</strong> and food-market trips <strong>AUD 294</strong>.</p>
+          </div>
+          <div class="story-insight">
+            <p>Farm-gate trips exceeded the national nightly benchmark by <strong>AUD 89</strong>, the largest difference among the three activities.</p>
+          </div>
+        </div>
+</article>
+</div>
+</div>
+</section>
+<section id="wine">
+<span class="eyebrow">Section 02</span>
+<h2>Australia’s wine landscape</h2>
+<p class="intro">Official boundaries locate recognised wine regions. They provide geographic context, not visitor counts.</p>
+<div class="cards pure-g">
+<div class="chart-column pure-u-1">
+<article class="chart-card">
+<h3>Which states had the most recognised wine regions in 2026?</h3>
+<div aria-label="Visualisation and its legend" class="visual-frame"><div class="chart-holder" id="chart04">Loading visualisation…</div><ul class="wine-name-key">
+<li>
+<strong>01</strong> Adelaide Hills (South Australia)
+              </li>
+<li>
+<strong>02</strong> Barossa Valley (South Australia)
+              </li>
+<li>
+<strong>03</strong> Clare Valley (South Australia)
+              </li>
+<li>
+<strong>04</strong> Kangaroo Island (South Australia)
+              </li>
+<li>
+<strong>05</strong> Great Southern (Western Australia)
+              </li>
+<li>
+<strong>06</strong> Margaret River (Western Australia)
+              </li>
+<li>
+<strong>07</strong> Mornington Peninsula (Victoria)
+              </li>
+<li>
+<strong>08</strong> Southern Highlands (New South Wales)
+              </li>
+</ul><p class="visual-help">Numbered circles identify matching place names. See the location key below.</p></div>        <div class="chart-summary" aria-label="Chart findings">
+          <div class="story-observation">
+            <p>Victoria had <strong>20</strong> recognised wine regions, followed by South Australia with <strong>18</strong>.</p>
+          </div>
+          <div class="story-insight">
+            <p>Victoria and South Australia together contained <strong>38 of the 64 mapped wine regions</strong>, just under <strong>60%</strong>.</p>
+          </div>
+        </div>
+</article>
+</div>
+</div>
+</section>
+<section id="visitors">
+<span class="eyebrow">Section 03</span>
+<h2>From states to tourism regions</h2>
+<p class="intro">Food-market trips show states visited. The regional maps show all-purpose overnight travel, not confirmed food-and-wine visits.</p>
+<div class="cards pure-g">
+<div class="chart-column pure-u-1">
+<article class="chart-card">
+<h3>Which states featured more in food-market trips in 2024?</h3>
+<div aria-label="Visualisation and its legend" class="visual-frame"><div class="chart-holder" id="chart06">Loading visualisation…</div></div>        <div class="chart-summary" aria-label="Chart findings">
+          <div class="story-observation">
+            <p>Western Australia appeared on <strong>13%</strong> of food-market trips versus <strong>9%</strong> overall; South Australia on <strong>9% versus 6%</strong>.</p>
+          </div>
+          <div class="story-insight">
+            <p>Western Australia had the largest positive share difference at <strong>four percentage points</strong>, followed by South Australia at <strong>three</strong>.</p>
+          </div>
+        </div>
+</article>
+</div>
+<div class="chart-column pure-u-1">
+<article class="chart-card">
+<h3>Which selected regions had the most<br class="chart-heading-break">
+domestic overnight trips in 2024?</h3>
+<div aria-label="Overnight trips map and legend" class="visual-frame">
+  <div class="chart05-legend" role="group" aria-label="Map colour and circle-size guide">
+    <div class="chart05-legend-row">
+      <span class="chart05-legend-heading">Region coverage</span>
+      <div class="chart05-legend-items">
+        <span class="chart05-legend-item"><span class="chart05-region-dot chart05-region-matched" aria-hidden="true"></span>Name-matched tourism region</span>
+        <span class="chart05-legend-item"><span class="chart05-region-dot chart05-region-wider" aria-hidden="true"></span>Broader reporting region</span>
+      </div>
+    </div>
+    <div class="chart05-legend-row">
+      <span class="chart05-legend-heading">Domestic overnight trips (2024)</span>
+      <div class="chart05-legend-items chart05-size-items">
+        <span class="chart05-legend-item"><span class="chart05-size-ring chart05-size-500k" aria-hidden="true"></span>500,000</span>
+        <span class="chart05-legend-item"><span class="chart05-size-ring chart05-size-1500k" aria-hidden="true"></span>1.5 million</span>
+        <span class="chart05-legend-item"><span class="chart05-size-ring chart05-size-3000k" aria-hidden="true"></span>3 million</span>
+        <span class="chart05-legend-item"><span class="chart05-size-ring chart05-size-4500k" aria-hidden="true"></span>4.5 million</span>
+      </div>
+    </div>
+  </div>
+  <div class="chart-holder" id="chart05">Loading visualisation…</div>
+  <p class="chart05-caption">The brown circle is Australia’s South West. Its figures cover a larger region, including Margaret River and Great Southern.</p>
+</div>        <div class="chart-summary" aria-label="Chart findings">
+          <div class="story-observation">
+            <p>South Coast recorded <strong>4.49 million</strong> domestic overnight trips; Hunter followed with <strong>4.46 million</strong>.</p>
+          </div>
+          <div class="story-insight">
+            <p>Only about <strong>29,000 overnight trips</strong> separated these two leading selected regions.</p>
+          </div>
+        </div>
+</article>
+</div>
+</div>
+</section>
+<section id="stays">
+<span class="eyebrow">Section 04</span>
+<h2>Trips, nights and length of stay</h2>
+<p class="intro">Trip totals, visitor-nights and average stay reveal different patterns of overnight travel.</p>
+<div class="cards pure-g">
+<div class="chart-column pure-u-1">
+<article class="chart-card">
+<h3>Which selected regions recorded the most domestic visitor-nights in 2024?</h3>
+<div aria-label="Visualisation and its legend" class="visual-frame"><div class="chart-holder" id="chart08">Loading visualisation…</div></div>        <div class="chart-summary" aria-label="Chart findings">
+          <div class="story-observation">
+            <p>South Coast recorded <strong>14.81 million visitor-nights</strong>, followed by Sunshine Coast at <strong>13.52 million</strong>.</p>
+          </div>
+          <div class="story-insight">
+            <p>Sunshine Coast trips averaged <strong>3.4 nights</strong> versus <strong>2.6</strong> in Hunter. Fewer trips still produced more visitor-nights.</p>
+          </div>
+        </div>
+</article>
+</div>
+<div class="chart-column pure-u-1">
+<article class="chart-card">
+<h3>How did average stays change from 2019 to 2024?</h3>
+<div aria-label="Visualisation and its legend" class="visual-frame"><div class="chart-holder" id="chart07">Loading visualisation…</div></div>        <div class="chart-summary" aria-label="Chart findings">
+          <div class="story-observation">
+            <p>Barossa rose from <strong>2.2 to 2.8 nights</strong>; Bundaberg fell from <strong>3.5 to 3.1 nights</strong>.</p>
+          </div>
+          <div class="story-insight">
+            <p>The gap between their average stays narrowed from <strong>1.3 nights in 2019</strong> to <strong>0.3 nights in 2024</strong>.</p>
+          </div>
+        </div>
+        <p class="chart-method-note">Only 2019 and 2024 are shown. The vertical axis starts at 1.8 nights.</p>
+</article>
+</div>
+</div>
+</section>
+<section id="spending">
+<span class="eyebrow">Section 05</span>
+<h2>Regional spending patterns</h2>
+<p class="intro">South Australia shows how all-purpose tourism spending differs by region. The final chart compares food-and-beverage product shares in Barossa and Hunter.</p>
+<div class="cards pure-g">
+<div class="chart-column pure-u-1">
+<article class="chart-card">
+<h3>Which selected South Australian regions<br class="chart-heading-break">
+led domestic tourism spending in 2024?</h3>
+<div aria-label="Visualisation and its legend" class="visual-frame"><div class="chart-holder" id="chart03">Loading visualisation…</div><ol aria-label="Cartogram region names and spending figures" class="cartogram-key">
+<li>
+<strong>01</strong>
+                Limestone Coast · AUD 646 million
+              </li>
+<li>
+<strong>02</strong>
+                Flinders Ranges and Outback · AUD 579 million (broader proxy)
+              </li>
+<li>
+<strong>03</strong>
+                Fleurieu Peninsula · AUD 501 million
+              </li>
+<li>
+<strong>04</strong>
+                Eyre Peninsula · AUD 439 million
+              </li>
+<li>
+<strong>05</strong>
+                Yorke Peninsula · AUD 337 million
+              </li>
+<li>
+<strong>06</strong>
+                Barossa · AUD 275 million
+              </li>
+<li>
+<strong>07</strong>
+                Riverland · AUD 221 million
+              </li>
+<li>
+<strong>08</strong>
+                Murray River, Lakes and Coorong · AUD 206 million
+              </li>
+<li>
+<strong>09</strong>
+                Adelaide Hills · AUD 175 million
+              </li>
+<li>
+<strong>10</strong>
+                Clare Valley · AUD 159 million
+              </li>
+<li>
+<strong>11</strong>
+                Kangaroo Island · AUD 143 million
+              </li>
+</ol><p class="visual-help">Shape area represents spending; numbers identify the regions in the key.</p></div>        <div class="chart-summary" aria-label="Chart findings">
+          <div class="story-observation">
+            <p>Among six matched regions, Limestone Coast led domestic tourism spending at <strong>AUD 646 million</strong>; Fleurieu Peninsula followed at <strong>AUD 501 million</strong>.</p>
+          </div>
+          <div class="story-insight">
+            <p>Limestone Coast led total domestic spending, while <strong>Barossa led overnight spending per night</strong> among the six selected regions.</p>
+          </div>
+        </div>
+</article>
+</div>
+<div class="chart-column pure-u-1">
+<article class="chart-card">
+<h3>How did domestic nightly spending vary<br class="chart-heading-break">
+across South Australia in 2024?</h3>
+<div aria-label="Visualisation and its legend" class="visual-frame"><div class="chart-holder" id="chart09">Loading visualisation…</div><p class="visual-help">Darker map areas show higher nightly spending. Numbered labels identify selected regions.</p></div>        <div class="chart-summary" aria-label="Chart findings">
+          <div class="story-observation">
+            <p>Among six matched regions, Barossa averaged about <strong>AUD 245 per visitor-night</strong>; Clare Valley followed at about <strong>AUD 244</strong>.</p>
+          </div>
+          <div class="story-insight">
+            <p>Despite similar overnight spending rates, total domestic tourism spending differed: <strong>AUD 275 million in Barossa</strong> versus <strong>AUD 159 million in Clare Valley</strong>.</p>
+          </div>
+        </div>
+        <p class="chart-method-note">Nightly rates are calculated from rounded regional expenditure and visitor-night estimates.</p>
+</article>
+</div>
+<div class="chart-column pure-u-1">
+<article class="chart-card">
+<h3>How did interstate and intrastate nightly spending<br class="chart-heading-break">
+compare in South Australia in 2024?</h3>
+<div aria-label="Visualisation and its legend" class="visual-frame"><div class="chart-holder" id="chart02">Loading visualisation…</div></div>        <div class="chart-summary" aria-label="Chart findings">
+          <div class="story-observation">
+            <p>On Kangaroo Island, interstate visitors averaged <strong>AUD 322</strong> per night versus <strong>AUD 163</strong> for intrastate visitors. Adelaide Hills showed <strong>AUD 159 versus AUD 310</strong>.</p>
+          </div>
+          <div class="story-insight">
+            <p>Neither visitor group consistently had the higher nightly spending across the selected South Australian regions.</p>
+          </div>
+        </div>
+</article>
+</div>
+<div class="chart-column pure-u-1">
+<article class="chart-card">
+<h3>Which trip types contributed most<br class="chart-heading-break">
+to South Australian tourism spending in 2024?</h3>
+<div aria-label="Visualisation and its legend" class="visual-frame"><div class="chart-holder" id="chart10">Loading visualisation…</div></div>        <div class="chart-summary" aria-label="Chart findings">
+          <div class="story-observation">
+            <p>Spending by interstate overnight visitors accounted for <strong>51.7%</strong> of Kangaroo Island’s domestic expenditure. Daytrips made up <strong>48.0%</strong> in Adelaide Hills.</p>
+          </div>
+          <div class="story-insight">
+            <p>Daytrips accounted for <strong>48.0%</strong> of Adelaide Hills domestic spending, compared with <strong>11.9%</strong> on Kangaroo Island.</p>
+          </div>
+        </div>
+</article>
+</div>
+<div class="chart-column pure-u-1">
+<article class="chart-card">
+<h3>Barossa or Hunter: Which had<br class="chart-heading-break">
+a larger food-and-beverage share in 2024-25?</h3>
+<div aria-label="Visualisation and its legend" class="visual-frame"><div class="chart-holder" id="chart11">Loading visualisation…</div></div>        <div class="chart-summary" aria-label="Chart findings">
+          <div class="story-observation">
+            <p>Food-and-beverage products made up <strong>38.0%</strong> of Barossa’s tourism consumption, versus <strong>29.9%</strong> in Hunter.</p>
+          </div>
+          <div class="story-insight">
+            <p>Hunter had much higher food-and-beverage tourism consumption in dollars, despite its smaller share: <strong>AUD 1.88 billion</strong> versus <strong>AUD 139 million</strong> in Barossa.</p>
+          </div>
+        </div>
+</article>
+</div>
+</div>
+</section>
+<section id="sources" class="conclusion-section">
+  <span class="eyebrow">Section 06</span>
+  <h2>What the evidence tells us</h2>
+  <div class="conclusion-grid">
+    <article class="conclusion-point">
+      <h3>Food-related trips spent more nightly</h3>
+      <p>Farm-gate trips averaged <strong>AUD 367 per night</strong>.</p>
+      <p>The national comparison was <strong>AUD 278</strong>.</p>
+    </article>
+    <article class="conclusion-point">
+      <h3>Regional trips were unevenly distributed</h3>
+      <p>South Coast led the <strong>16 selected regions</strong>.</p>
+      <p>It recorded <strong>4.49 million overnight trips</strong> overall.</p>
+    </article>
+    <article class="conclusion-point">
+      <h3>Spending shares differed between regions</h3>
+      <p>Food and beverage products: <strong>38.0% in Barossa</strong>.</p>
+      <p>Hunter's equivalent share was <strong>29.9%</strong>.</p>
+    </article>
+  </div>
+  <p class="conclusion-footnote">
+    <span>Different sources measure different types of tourism.</span>
+    <span>Regional totals are not food-attraction sales.</span>
+  </p>
+</section>
+</main>
+<footer aria-labelledby="metadata-heading" class="footer" id="metadata">
+<div class="container">
+<div class="metadata-header">
+<span class="eyebrow">Behind the visualisation</span>
+<h2 id="metadata-heading">Data, methods &amp; credits</h2>
+<p>Project information, references, and AI acknowledgement.</p>
+</div>
+<div class="metadata-grid">
+<div class="metadata-panel">
+<h3>Project metadata</h3>
+<dl class="metadata-details">
+<div>
+<dt>Unit</dt>
+<dd>FIT3179 Data Visualisation 2</dd>
+</div>
+<div>
+<dt>Topic</dt>
+<dd>Regional food &amp; wine tourism in Australia</dd>
+</div>
+<div>
+<dt>Coverage</dt>
+<dd>Australia-wide tourism indicators, South Australian regional expenditure, and Barossa-Hunter
+                comparison</dd>
+</div>
+<div>
+<dt>Reference periods</dt>
+<dd>Visitor data from 2019 and 2024, regional tourism accounts for the financial year ending June 2025, and wine-region boundaries from 2026.</dd>
+</div>
+<div>
+<dt>Visualisation tools</dt>
+<dd>HTML, CSS, JavaScript and Vega-Lite</dd>
+</div>
+<div>
+<dt>Author</dt>
+<dd>Yee Sue Ann</dd>
+</div>
+<div>
+<dt>Last updated</dt>
+<dd><time datetime="2026-11-12">12 November 2026</time></dd>
+</div>
+</dl>
+</div>
+<div class="metadata-panel" id="data-sources">
+  <h3>Data sources</h3>
+  <ol class="metadata-source-list apa-references" aria-label="References formatted in APA seventh edition">
+    <li>Australian Bureau of Statistics. (2021, July 20). <em>Australian Statistical Geography Standard (ASGS), Edition 3: Digital boundary files</em> [Data set]. <a href="https://www.abs.gov.au/statistics/standards/australian-statistical-geography-standard-asgs/edition-3-july-2021-june-2026/access-and-downloads/digital-boundary-files" target="_blank" rel="noopener noreferrer">https://www.abs.gov.au/statistics/standards/australian-statistical-geography-standard-asgs/edition-3-july-2021-june-2026/access-and-downloads/digital-boundary-files</a></li>
+    <li>South Australian Tourism Commission. (2024). <em>South Australia: Visit to regions, year ending December 2024</em> [Report]. <a href="https://tourism.sa.gov.au/media/twhdegx0/visit-to-regions-report-december-2024.pdf" target="_blank" rel="noopener noreferrer">https://tourism.sa.gov.au/media/twhdegx0/visit-to-regions-report-december-2024.pdf</a></li>
+    <li>Tourism Research Australia. (n.d.-a). <em>National Visitor Survey trends</em> [Data tables]. <a href="https://www.tra.gov.au/en/tourism-statistics/national-visitor-survey-trends" target="_blank" rel="noopener noreferrer">https://www.tra.gov.au/en/tourism-statistics/national-visitor-survey-trends</a></li>
+    <li>Tourism Research Australia. (n.d.-b). <em>State and regional tourism satellite accounts</em> [Data files]. <a href="https://www.tra.gov.au/en/tourism-industry-analysis/state-and-regional-sta" target="_blank" rel="noopener noreferrer">https://www.tra.gov.au/en/tourism-industry-analysis/state-and-regional-sta</a></li>
+    <li>Tourism Research Australia. (n.d.-c). <em>Tourism regions 2021</em> [Data set]. <a href="https://data.gov.au/data/dataset/b71e731a-fb94-4bd3-9380-a3209643bfb9" target="_blank" rel="noopener noreferrer">https://data.gov.au/data/dataset/b71e731a-fb94-4bd3-9380-a3209643bfb9</a></li>
+    <li>Tourism Research Australia. (2025a). <em>Agritourism in Australia</em> [Report]. <a href="https://www.tra.gov.au/en/research-reports/agritourism-in-australia" target="_blank" rel="noopener noreferrer">https://www.tra.gov.au/en/research-reports/agritourism-in-australia</a></li>
+    <li>Tourism Research Australia. (2025b). <em>Agritourism in Australia: Food markets in 2024</em> [Fact sheet]. <a href="https://www.tra.gov.au/en/research-reports/agritourism-in-australia" target="_blank" rel="noopener noreferrer">https://www.tra.gov.au/en/research-reports/agritourism-in-australia</a></li>
+    <li>Tourism Research Australia. (2025c). <em>Agritourism in Australia: Visiting farm gates in 2024</em> [Fact sheet]. <a href="https://www.tra.gov.au/en/research-reports/agritourism-in-australia" target="_blank" rel="noopener noreferrer">https://www.tra.gov.au/en/research-reports/agritourism-in-australia</a></li>
+    <li>Tourism Research Australia. (2025d). <em>Agritourism in Australia: Visiting wineries in 2024</em> [Fact sheet]. <a href="https://www.tra.gov.au/en/research-reports/agritourism-in-australia" target="_blank" rel="noopener noreferrer">https://www.tra.gov.au/en/research-reports/agritourism-in-australia</a></li>
+    <li>Wine Australia. (n.d.). <em>Australian wine geographical indications</em> [Map data]. <a href="https://www.wineaustralia.com/labelling/register-of-protected-gis-and-other-terms/australian-wine-geographical-indications" target="_blank" rel="noopener noreferrer">https://www.wineaustralia.com/labelling/register-of-protected-gis-and-other-terms/australian-wine-geographical-indications</a></li>
+  </ol>
+</div>
+</div>
+<div class="metadata-disclosure">
+<h3>AI acknowledgement</h3>
+<p>ChatGPT was used to assist with reshaping datasets, grammar checking and debugging. The charts,
+          figures and texts were all reviewed and edited by the author.</p>
+
+</div>
+
+</div>
+</footer>
+</body>
+</html>

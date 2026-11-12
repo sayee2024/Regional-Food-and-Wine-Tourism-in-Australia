@@ -1,0 +1,244 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Proportional-symbol map of 2024 domestic overnight trips in 16 selected Australian TRA regions; original source values and representative points retained. Circle area linearly encodes trips with a maximum area of 650 square pixels to reduce overlap. Full state-name labels are shown where space allows, behind circles; the Australian Capital Territory is identified by the existing full-name tooltip because of its small map area. Existing projection and data files retained; trips are not food- or wine-specific.",
+  "width": "container",
+  "height": 470,
+  "projection": {
+    "type": "conicEqualArea",
+    "parallels": [
+      -18,
+      -36
+    ],
+    "rotate": [
+      -132,
+      0
+    ],
+    "center": [
+      0,
+      -27
+    ]
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/chart05_tourism_regions_2021.json",
+        "format": {
+          "type": "topojson",
+          "feature": "chart05_tourism_regions_2021"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#EDF1EB",
+        "stroke": "#CBD4CC",
+        "strokeWidth": 0.6
+      }
+    },
+    {
+      "data": {
+        "url": "data/chart05_state_labels_2021.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "lon": "number",
+            "lat": "number"
+          }
+        }
+      },
+      "mark": {
+        "type": "text",
+        "font": "Arial",
+        "fontSize": 10,
+        "fontWeight": "normal",
+        "opacity": 0.8,
+        "stroke": "#FFFDF9",
+        "strokeWidth": 2.5,
+        "strokeJoin": "round"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "state",
+          "type": "nominal"
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "type": "nominal",
+            "title": "State / territory"
+          }
+        ]
+      },
+      "transform": [
+        {
+          "filter": "datum.state != 'Australian Capital Territory'"
+        }
+      ]
+    },
+    {
+      "data": {
+        "url": "data/chart05_state_labels_2021.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "lon": "number",
+            "lat": "number"
+          }
+        }
+      },
+      "mark": {
+        "type": "text",
+        "font": "Arial",
+        "fontSize": 10,
+        "fontWeight": "normal",
+        "opacity": 0.8,
+        "fill": "#42574D"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "state",
+          "type": "nominal"
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "type": "nominal",
+            "title": "State / territory"
+          }
+        ]
+      },
+      "transform": [
+        {
+          "filter": "datum.state != 'Australian Capital Territory'"
+        }
+      ]
+    },
+    {
+      "data": {
+        "url": "data/chart05_regional_overnight_trips_2024.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "lon": "number",
+            "lat": "number",
+            "domestic_overnight_trips_2024": "number"
+          }
+        }
+      },
+      "mark": {
+        "type": "circle",
+        "opacity": 0.94,
+        "stroke": "#FFFFFF",
+        "strokeWidth": 0.55
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "size": {
+          "field": "domestic_overnight_trips_2024",
+          "type": "quantitative",
+          "scale": {
+            "type": "linear",
+            "domain": [
+              0,
+              5000000
+            ],
+            "range": [
+              0,
+              180
+            ]
+          },
+          "legend": null
+        },
+        "color": {
+          "field": "geographic_match_status",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "direct_or_minor_name_variant",
+              "broader_proxy"
+            ],
+            "range": [
+              "#24736A",
+              "#B47D42"
+            ]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          {
+            "field": "tourism_region",
+            "type": "nominal",
+            "title": "TRA tourism region"
+          },
+          {
+            "field": "state",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "domestic_overnight_trips_2024",
+            "type": "quantitative",
+            "title": "Domestic overnight trips (2024)",
+            "format": ",.0f"
+          },
+          {
+            "field": "associated_atdw_food_bowl_names",
+            "type": "nominal",
+            "title": "Associated named food bowl(s)"
+          },
+          {
+            "field": "scope_note",
+            "type": "nominal",
+            "title": "Reporting scope"
+          }
+        ],
+        "order": {
+          "field": "domestic_overnight_trips_2024",
+          "type": "quantitative",
+          "sort": "descending"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "legend": {
+      "labelFont": "Arial",
+      "titleFont": "Arial",
+      "titleLimit": 450,
+      "labelLimit": 250
+    },
+    "axis": {
+      "labelFont": "Arial",
+      "titleFont": "Arial"
+    }
+  },
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  }
+}

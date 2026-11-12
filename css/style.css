@@ -1,0 +1,972 @@
+
+:root {
+  --paper: #fffdf9;
+  --ink: #1e342e;
+  --forest: #28584b;
+  --teal: #24736a;
+  --ochre: #b47d42;
+  --sage: #b0c9b6;
+  --muted: #65746c;
+  --line: #e3dfd7;
+  --bg: #f6f3ed;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 16px/1.65 Arial, Helvetica, sans-serif;
+}
+
+.container {
+  max-width: 1140px;
+  margin: auto;
+  padding: 0 18px;
+}
+
+.hero {
+  background: var(--forest);
+  color: white;
+  padding: 42px 0;
+}
+
+.hero h1 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(32px, 4.5vw, 56px);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.12;
+  margin: 8px 0 12px;
+}
+
+.hero p {
+  max-width: 800px;
+  margin: 7px 0;
+}
+
+nav {
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+  padding: 12px 0;
+}
+
+nav a {
+  margin: 0 22px 0 0;
+  color: var(--forest);
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+section {
+  padding-top: 32px;
+}
+
+main > section + section {
+  border-top: 1px solid var(--line);
+  margin-top: 20px;
+}
+
+section h2 {
+  margin: 4px 0;
+  font-size: 26px;
+}
+
+.intro {
+  max-width: 790px;
+  color: #55645b;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+
+.cards {
+  margin: 0 -10px;
+}
+
+.chart-column {
+  padding: 10px;
+  min-width: 0;
+}
+
+.chart-card {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+}
+
+h3 {
+  font-size: 18px;
+  line-height: 1.4;
+  margin: 0 0 6px;
+}
+
+.subtitle,
+.source {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.source {
+  margin-top: 15px;
+}
+
+.chart-holder {
+  width: 100%;
+  min-width: 0;
+  min-height: 220px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  text-align: center;
+}
+
+
+.chart-holder.vega-embed,
+.chart-holder .vega-embed {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.chart-holder svg,
+.chart-holder canvas {
+  display: block;
+  margin-inline: auto;
+  max-width: 100%;
+  height: auto;
+}
+
+.placeholder {
+  min-height: 160px;
+  background: #f4f1ea;
+  border: 1px dashed #c6c7c0;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--muted);
+  padding: 16px;
+}
+
+.note {
+  border-left: 3px solid var(--ochre);
+  padding-left: 12px;
+  font-size: 14px;
+}
+
+.footer {
+  margin-top: 50px;
+  padding: 20px 0;
+  background: #e9eee9;
+  color: var(--ink);
+  font-size: 14px;
+}
+
+@media (max-width: 600px) {
+  nav a {
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+
+  .chart-card {
+    padding: 14px;
+  }
+}
+
+
+.cartogram-key {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 5px 14px;
+  list-style: none;
+  margin: 10px 0 4px;
+  padding: 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.cartogram-key strong {
+  color: var(--ink);
+  display: inline-block;
+  min-width: 25px;
+}
+
+
+.wine-map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 20px;
+  font-size: 13px;
+  color: var(--ink);
+}
+
+.wine-map-key {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.wine-map-swatch {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border: 1px solid #fff;
+  border-radius: 2px;
+  vertical-align: middle;
+  flex: none;
+}
+
+.wine-map-match {
+  background-color: #C17B40;
+}
+
+.wine-map-other {
+  background-color: #A8C5BA;
+}
+
+
+.symbol-map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin: 10px 0 12px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.symbol-map-legend > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.symbol-map-dot {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: 1px solid white;
+}
+
+.symbol-map-direct {
+  background: var(--teal);
+}
+
+.symbol-map-proxy {
+  background: var(--ochre);
+}
+
+
+.source-links {
+  padding-left: 22px;
+  max-width: 880px;
+}
+
+.source-links li {
+  margin-bottom: 9px;
+}
+
+.source-links a,
+.footer a {
+  color: var(--forest);
+  text-decoration: underline;
+  overflow-wrap: anywhere;
+}
+
+
+.insight {
+  margin: 14px 0 12px;
+  padding: 6px 0 6px 12px;
+  border-left: 4px solid var(--forest);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+
+.map-guidance {
+  margin: 10px 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.wine-name-key,
+.map-num-key {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 5px 16px;
+  margin: 8px 0 16px;
+  padding-left: 28px;
+  font-size: 13px;
+  color: var(--ink);
+}
+
+
+
+.hero h1 {
+  max-width: 950px;
+}
+
+h2,
+h3,
+.subtitle,
+.metadata-details,
+.metadata-source-list {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.metadata-header {
+  max-width: 780px;
+  margin-bottom: 22px;
+}
+
+.metadata-header h2 {
+  font-size: clamp(22px, 3vw, 30px);
+  margin: 5px 0 8px;
+}
+
+.metadata-header p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.metadata-grid {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.88fr) minmax(0, 1.4fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+.metadata-panel,
+.metadata-disclosure {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 22px;
+}
+
+.metadata-panel h3,
+.metadata-disclosure h3 {
+  font-size: 17px;
+  margin: 0 0 14px;
+  color: var(--forest);
+}
+
+.metadata-details {
+  margin: 0;
+}
+
+.metadata-details > div + div {
+  border-top: 1px solid var(--line);
+  margin-top: 11px;
+  padding-top: 11px;
+}
+
+.metadata-details dt {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
+}
+
+.metadata-details dd {
+  margin: 3px 0 0;
+  line-height: 1.5;
+}
+
+.metadata-placeholder {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.metadata-source-list {
+  margin: 0;
+  padding-left: 22px;
+}
+
+.metadata-source-list li + li {
+  margin-top: 12px;
+}
+
+.metadata-source-list a {
+  font-weight: 700;
+  color: var(--forest);
+  overflow-wrap: anywhere;
+  text-underline-offset: 2px;
+}
+
+.metadata-source-list span {
+  display: block;
+  color: var(--muted);
+  line-height: 1.48;
+  margin-top: 2px;
+}
+
+.metadata-disclosure {
+  margin-top: 18px;
+  border-left: 4px solid var(--teal);
+}
+
+.metadata-disclosure p {
+  margin: 0;
+  max-width: 980px;
+}
+
+.metadata-method-note {
+  margin-top: 12px !important;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.metadata-endline {
+  margin: 20px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+@media (max-width: 760px) {
+  .metadata-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .metadata-panel,
+  .metadata-disclosure {
+    padding: 17px;
+  }
+}
+
+
+.chart-holder,
+.chart-panel,
+.chart-holder.vega-embed,
+.chart-panel.vega-embed {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  padding-right: 0;
+}
+.chart-panel + .chart-panel {
+  margin-top: 28px;
+}
+.chart-holder svg {
+  margin-inline: auto;
+}
+
+
+.chart-panel,
+.chart-panel.vega-embed {
+  min-width: 0;
+  width: 100%;
+}
+
+/* Evidence-first storytelling: the chart has priority; commentary fills the row. */
+.chart-card > h3 {
+  max-width: 78ch;
+  font-size: clamp(19px, 2vw, 22px);
+  line-height: 1.35;
+  margin-bottom: 5px;
+  text-wrap: balance;
+}
+
+.chart-card > .subtitle {
+  margin: 2px 0 15px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.visual-frame {
+  width: 100%;
+  min-width: 0;
+  padding: 12px 12px 14px;
+  margin: 0;
+  border: 1px solid #e9e8df;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.visual-frame > .chart-holder {
+  width: 100%;
+  margin: 0;
+}
+
+.visual-frame .symbol-map-legend {
+  margin: 2px 0 10px;
+  padding: 4px 8px;
+  font-size: 12px;
+  justify-content: center;
+  color: var(--ink);
+}
+
+.visual-frame .wine-name-key,
+.visual-frame .cartogram-key {
+  margin: 10px 4px 4px;
+  padding: 11px 14px;
+  border-top: 1px solid var(--line);
+  background: #fcfbf7;
+  border-radius: 3px;
+  list-style: none;
+  grid-template-columns: repeat(auto-fit, minmax(195px, 1fr));
+  gap: 7px 15px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.visual-frame .wine-name-key li,
+.visual-frame .cartogram-key li {
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
+.visual-frame .wine-name-key { padding-left: 14px; }
+.visual-frame .wine-name-key strong { min-width: 29px; display: inline-block; color: var(--forest); }
+
+.visual-help {
+  margin: 9px 6px 1px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.chart-summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
+  gap: clamp(14px, 2.5vw, 30px);
+  align-items: start;
+  margin: 15px 0 2px;
+}
+
+.chart-summary .insight {
+  margin: 0;
+  padding: 12px 15px;
+  border-left: 4px solid var(--forest);
+  background: #eef4ef;
+  border-radius: 0 5px 5px 0;
+  font-size: 15px;
+  line-height: 1.58;
+  max-width: none;
+}
+
+.chart-summary .insight strong { color: #173f34; }
+
+.chart-summary .note {
+  margin: 0;
+  padding: 10px 0 10px 13px;
+  border-left: 2px solid #c69b67;
+  color: #58685f;
+  font-size: 13px;
+  line-height: 1.55;
+  max-width: none;
+}
+
+.metadata-source-detail {
+  margin-top: 18px;
+  padding: 15px 20px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.metadata-source-detail summary {
+  cursor: pointer;
+  color: var(--forest);
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.metadata-source-detail > p { max-width: 76ch; color: var(--muted); }
+.metadata-source-detail .chart-provenance-list { padding-left: 26px; }
+.metadata-source-detail .chart-provenance-list li { padding: 5px 0; line-height: 1.55; }
+.metadata-source-detail .chart-provenance-list li + li { border-top: 1px solid var(--line); }
+
+@media (max-width: 780px) {
+  .chart-summary { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .visual-frame { padding: 8px 6px 11px; }
+  .visual-frame .wine-name-key,
+  .visual-frame .cartogram-key { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); padding: 9px 8px; }
+  .chart-card > h3 { font-size: 18px; }
+}
+
+.conclusion-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 18px;
+}
+.conclusion-point {
+  margin: 0;
+  padding: 15px 17px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--forest);
+  border-radius: 5px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.conclusion-footnote {
+  max-width: 84ch;
+  font-size: 13px;
+  color: var(--muted);
+}
+@media (max-width: 780px) {
+  .conclusion-grid { grid-template-columns: minmax(0,1fr); }
+}
+
+/* Final balance and responsive chart-panel correction. */
+.chart-summary {
+  max-width: 1020px;
+  margin: 16px auto 2px;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr);
+}
+.chart-summary .insight, .chart-summary .note {
+  overflow-wrap: break-word;
+}
+.visual-frame .chart-holder {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.chart-panel {
+  max-width: 100%;
+}
+@media (max-width: 780px) {
+  .chart-summary { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* 314 checkpoint: balanced conclusion and APA-formatted website references. */
+.conclusion-section { padding-bottom: 12px; }
+.conclusion-section > h2 { margin-bottom: 13px; }
+.conclusion-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(12px, 2vw, 22px);
+  margin-top: 12px;
+}
+.conclusion-point {
+  min-width: 0;
+  padding: 17px 20px;
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--forest);
+  background: var(--paper);
+  border-radius: 7px;
+}
+.conclusion-point h3 {
+  font-size: 16px;
+  line-height: 1.4;
+  margin: 0 0 10px;
+  color: var(--forest);
+}
+.conclusion-point p {
+  font-size: 14px;
+  line-height: 1.55;
+  margin: 6px 0;
+  max-width: none;
+}
+.conclusion-footnote {
+  margin: 15px auto 0;
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+  line-height: 1.65;
+  max-width: none;
+}
+.conclusion-footnote span { display: block; }
+
+/* Give references the full available width, not a squeezed right-hand sidebar. */
+.metadata-grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+.metadata-details {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px 24px;
+}
+.metadata-details > div + div { border-top: 0; margin: 0; padding: 0; }
+.metadata-header { max-width: none; }
+
+/* APA 7: group author, date, italic title, linked URL, and hanging indent. */
+.apa-references {
+  display: block;
+  columns: 2;
+  column-gap: 40px;
+  column-rule: 1px solid var(--line);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.75;
+}
+.apa-references li {
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+  margin: 0 0 11px !important;
+  padding-left: 1.27cm;
+  text-indent: -1.27cm;
+  overflow-wrap: anywhere;
+}
+.apa-references a {
+  font-weight: 400;
+  color: var(--forest);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.apa-references em { font-style: italic; }
+.metadata-disclosure { margin-top: 16px; }
+
+@media (max-width: 840px) {
+  .conclusion-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .conclusion-point:last-child { grid-column: 1 / -1; }
+  .metadata-details { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .apa-references { columns: 1; column-rule: none; }
+}
+@media (max-width: 580px) {
+  .conclusion-grid { grid-template-columns: minmax(0, 1fr); }
+  .conclusion-point:last-child { grid-column: auto; }
+  .metadata-details { grid-template-columns: minmax(0, 1fr); }
+  .conclusion-point { padding: 13px 16px; }
+}
+
+
+/* Chart 05: a unified, left-aligned legend within the map frame.
+   Colour distinguishes reporting-area match; circle size shows trip totals.
+   Filled teal circles demonstrate size using the dominant mapped category. */
+.chart05-legend {
+  padding: 8px 12px 10px;
+  margin: 0 0 3px;
+  border-bottom: 1px solid #e7e9e5;
+  color: #34483e;
+  text-align: left;
+  font-size: 12px;
+  line-height: 1.45;
+}
+.chart05-legend-row {
+  display: grid;
+  grid-template-columns: 224px minmax(0, 1fr);
+  column-gap: 12px;
+  align-items: center;
+  padding: 5px 0;
+}
+.chart05-legend-heading {
+  color: #43594f;
+  font-weight: 700;
+  white-space: normal;
+}
+.chart05-legend-items {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  column-gap: 22px;
+  row-gap: 7px;
+  min-width: 0;
+}
+.chart05-legend-item {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  gap: 7px;
+}
+.chart05-region-dot {
+  width: 11px;
+  height: 11px;
+  flex: 0 0 auto;
+  display: inline-block;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(32, 58, 47, .12);
+}
+.chart05-region-matched { background: #24736A; }
+.chart05-region-wider { background: #B47D42; }
+.chart05-size-items { column-gap: 18px; }
+.chart05-size-items .chart05-legend-item { gap: 7px; }
+.chart05-size-ring {
+  flex: 0 0 auto;
+  display: inline-block;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.9);
+  background: #24736A;
+  box-shadow: 0 0 0 1px rgba(36,115,106,.22);
+}
+.chart05-size-500k { width: 4.8px; height: 4.8px; }
+.chart05-size-1500k { width: 8.3px; height: 8.3px; }
+.chart05-size-3000k { width: 11.7px; height: 11.7px; }
+.chart05-size-4500k { width: 14.4px; height: 14.4px; }
+.chart05-caption {
+  text-align: left;
+  margin: 4px 12px 0;
+  color: #5d6c62;
+  font-size: 12px;
+  line-height: 1.55;
+}
+@media (max-width: 650px) {
+  .chart05-legend { padding: 6px 8px 9px; }
+  .chart05-legend-row { grid-template-columns: minmax(0, 1fr); row-gap: 5px; }
+  .chart05-legend-items { column-gap: 15px; }
+  .chart05-legend-item { white-space: normal; }
+  .chart05-caption { margin-inline: 8px; }
+}
+
+
+/* Question-led hierarchy: chapters name a theme, chart cards ask a question.
+   Avoid near-identical typographic treatment for consecutive headings. */
+main > section:not(#sources) {
+  padding-top: clamp(34px, 4.5vw, 54px);
+}
+main > section:not(#sources) > .eyebrow {
+  display: inline-block;
+  margin-bottom: 7px;
+  color: #557569;
+  font-size: 11px;
+  line-height: 1.4;
+  letter-spacing: 0.15em;
+}
+main > section:not(#sources) > h2 {
+  max-width: 24ch;
+  margin: 0 0 10px;
+  color: var(--forest);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(25px, 3vw, 32px);
+  font-weight: 700;
+  line-height: 1.19;
+  letter-spacing: -0.018em;
+  text-wrap: balance;
+}
+main > section:not(#sources) > .intro {
+  max-width: 78ch;
+  margin: 0 0 22px;
+  font-size: 15px;
+  line-height: 1.63;
+  color: #55645b;
+}
+main > section:not(#sources) .chart-card {
+  padding: clamp(16px, 2vw, 24px);
+}
+main > section:not(#sources) .chart-card > h3 {
+  max-width: 100%;
+  margin: 0 0 7px;
+  color: #193c33;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(18px, 1.8vw, 21px);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0;
+  text-wrap: pretty;
+}
+main > section:not(#sources) .chart-card > .subtitle {
+  margin: 0 0 16px;
+  color: #68766d;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+@media (max-width: 600px) {
+  main > section:not(#sources) > .intro { font-size: 14px; }
+  main > section:not(#sources) .chart-card > h3 { font-size: 18px; }
+}
+
+/* No redundant chart subtitles: preserve chart question-to-visual breathing space. */
+main > section:not(#sources) .chart-card > h3 { margin-bottom: 16px; }
+
+
+/* Question-led storytelling: measured observations (sage green) and
+   evidence-based insights (soft amber) remain visually distinct but balanced. */
+.chart-summary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(12px, 2vw, 22px);
+  max-width: none;
+  margin: 14px 0 0;
+  align-items: stretch;
+}
+.chart-summary .story-observation,
+.chart-summary .story-insight {
+  min-width: 0;
+  padding: clamp(13px, 1.8vw, 19px);
+  margin: 0;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  border-left-width: 4px;
+}
+.chart-summary .story-observation {
+  background: #edf4ef;
+  border-color: #d5e5d9;
+  border-left-color: #2a6d5a;
+}
+.chart-summary .story-insight {
+  background: #fff8e9;
+  border-color: #f0e0c1;
+  border-left-color: #b68139;
+}
+.chart-summary .story-label {
+  margin: 0 0 7px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #254b3f;
+  letter-spacing: .025em;
+}
+.chart-summary .story-insight .story-label { color: #80551d; }
+.chart-summary .story-observation > p:last-child,
+.chart-summary .story-insight > p:last-child {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.58;
+  color: var(--ink);
+  overflow-wrap: break-word;
+}
+.chart-summary strong { color: #173f34; }
+.chart-method-note {
+  margin: 10px 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+@media (max-width: 780px) {
+  .chart-summary { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+}
+
+/* Allow long chart questions to reflow naturally on narrow screens. */
+@media (max-width: 700px) {
+  .chart-card > h3 .chart-heading-break { display: none; }
+}
+
+
+/* Final narrative line wrapping. Keep wording and established line spacing;
+   balance short lines instead of leaving an overly long first line. */
+.hero p {
+  max-width: 60ch;
+  text-wrap: balance;
+}
+main > section:not(#sources) > .intro {
+  max-width: 60ch;
+  text-wrap: balance;
+}
+.chart-summary .story-observation > p:last-child,
+.chart-summary .story-insight > p:last-child {
+  max-width: 50ch;
+  text-wrap: balance;
+}
+.chart05-caption,
+.chart-method-note,
+.visual-help,
+.conclusion-footnote {
+  max-width: 44ch;
+  text-wrap: balance;
+}
+.metadata-details dd {
+  text-wrap: balance;
+}
+.metadata-disclosure p {
+  max-width: 51ch;
+  text-wrap: balance;
+}

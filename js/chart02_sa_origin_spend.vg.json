@@ -1,0 +1,163 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Connected dot plot of spend per visitor night for interstate and intrastate domestic overnight tourism in six South Australian tourism regions; year ending December 2024. Regional totals are not specific to food and wine attractions.",
+  "data": {
+    "url": "data/chart02_sa_origin_spend_2024.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "interstate_spend_per_visitor_night_AUD": "number",
+        "intrastate_spend_per_visitor_night_AUD": "number",
+        "difference_interstate_minus_intrastate_AUD": "number",
+        "absolute_difference_AUD": "number"
+      }
+    }
+  },
+  "width": "container",
+  "height": 340,
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 2.5,
+        "color": "#C8C9C2"
+      },
+      "encoding": {
+        "y": {
+          "field": "tourism_region",
+          "type": "nominal",
+          "sort": {
+            "field": "difference_interstate_minus_intrastate_AUD",
+            "order": "descending"
+          },
+          "axis": {
+            "title": null,
+            "labelFontSize": 12,
+            "labelLimit": 185
+          }
+        },
+        "x": {
+          "field": "intrastate_spend_per_visitor_night_AUD",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              380
+            ]
+          },
+          "axis": {
+            "title": "Average spending per visitor-night (AUD)",
+            "format": ",.0f",
+            "tickCount": 5
+          }
+        },
+        "x2": {
+          "field": "interstate_spend_per_visitor_night_AUD"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "fold": [
+            "interstate_spend_per_visitor_night_AUD",
+            "intrastate_spend_per_visitor_night_AUD"
+          ],
+          "as": [
+            "origin_field",
+            "spend_per_night_AUD"
+          ]
+        },
+        {
+          "calculate": "datum.origin_field === \"interstate_spend_per_visitor_night_AUD\" ? \"Interstate\" : \"Intrastate\"",
+          "as": "visitor_origin"
+        }
+      ],
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 120,
+        "stroke": "#FFFDF9",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "spend_per_night_AUD",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "tourism_region",
+          "type": "nominal",
+          "sort": {
+            "field": "difference_interstate_minus_intrastate_AUD",
+            "order": "descending"
+          }
+        },
+        "color": {
+          "field": "visitor_origin",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Interstate",
+              "Intrastate"
+            ],
+            "range": [
+              "#B47D42",
+              "#24736A"
+            ]
+          },
+          "legend": {
+            "title": "Visitor origin",
+            "orient": "top",
+            "direction": "horizontal",
+            "labelFontSize": 12
+          }
+        },
+        "tooltip": [
+          {
+            "field": "tourism_region",
+            "type": "nominal",
+            "title": "Tourism region"
+          },
+          {
+            "field": "visitor_origin",
+            "type": "nominal",
+            "title": "Visitor origin"
+          },
+          {
+            "field": "spend_per_night_AUD",
+            "type": "quantitative",
+            "title": "Spending per visitor-night (AUD)",
+            "format": ",.0f"
+          },
+          {
+            "field": "difference_interstate_minus_intrastate_AUD",
+            "type": "quantitative",
+            "title": "Interstate − intrastate (AUD)",
+            "format": "+,.0f"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFont": "Arial",
+      "titleFont": "Arial",
+      "labelColor": "#22382F",
+      "titleColor": "#22382F",
+      "gridColor": "#E9E5DE"
+    },
+    "legend": {
+      "titleLimit": 450,
+      "labelLimit": 250
+    }
+  },
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  }
+}
